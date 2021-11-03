@@ -4,13 +4,82 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Agregar Libros</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+        <!-- CSS -->
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        
+        <div class="container mt-5 main">
+            <div class="menu">
+                <a th:href="@{/libros/todos}" class="btn btn-primary" >Regresar</a>
+                 <a th:href="@{/index}" class="btn btn-primary" >Home</a>
+                
+            </div>
+            <h1 th:text="${title}"></h1>
+            <hr class="mb-5 col-xl-12"/>
+            <form autocomplete="off" class="needs-validation" id="formulario" method="POST"
+                  novalidate th:action="@{/libros/__${action}__}" th:object="${libro}">
+                <input th:field="*{id}" type="hidden"/>
+                
+                <div class="form-floating mb-3 col-xl-6">
+                    <input class="form-control" id="isbn" placeholder="Isbn" required th:field="*{isbn}" type="value"/>
+                    <label for="anio">Isbn</label>
+                    <div class="invalid-feedback">El Isbn es obligatorio</div>
+                </div>
+                
+                <div class="form-floating mb-3 col-xl-6">
+                    <input class="form-control" id="titulo" placeholder="Titulo" required th:field="*{titulo}" type="text"/>
+                    <label for="titulo">Titulo</label>
+                    <div class="invalid-feedback">El titulo es obligatorio</div>
+
+
+                </div>
+                <div class="form-floating mb-3 col-xl-6">
+                    <input class="form-control" id="anio" placeholder="Año" required th:field="*{anio}" type="value"/>
+                    <label for="anio">Año</label>
+                    <div class="invalid-feedback">El año es obligatorio</div>
+                </div>
+                
+                 <div class="form-floating mb-3 col-xl-6">
+                    <input class="form-control" id="ejemplares" placeholder="Ejemplares" required th:field="*{ejemplares}" type="value"/>
+                    <label for="anio">Ejemplares</label>
+                    <div class="invalid-feedback">El año es obligatorio</div>
+                </div>
+                
+                <div  class="form-floating mb-3 col-xl-6" >
+                    <select aria-label="Elegir Autor" class="form-select" id="autor" th:field="*{autor}" required>
+                        <option selected value="">Elegir autor</option>
+                        <option th:each="autor : ${autores}" th:text="${autor.nombre}" th:value="${autor.id}"> </option>
+                    </select>
+                    <label for="autor">Autor</label>
+                    <div class="invalid-feedback">El autor es obligatorio</div>
+                </div>
+                
+                 <div  class="form-floating mb-3 col-xl-6" >
+                    <select aria-label="Elegir Editorial" class="form-select" id="editorial" th:field="*{editorial}" required>
+                        <option selected value="">Elegir Editorial</option>
+                        <option th:each="editorial : ${editoriales}" th:text="${editorial.nombre}" th:value="${editorial.id}"></option>
+                    </select>
+                    <label for="editorial">Editorial</label>
+                    <div class="invalid-feedback">La editorial es obligatoria</div>
+                </div>
+                
+                
+                
+                <div class="row">
+                    <div class="col-xl-3">
+                        <button class="btn btn-success" th:text="${action == 'guardar'} ? 'Crear Libro' : 'Guardar cambios'"
+                                type="submit"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </body>
 </html>

@@ -8,6 +8,8 @@ package egg.edu.spring.boot.controladores;
 import egg.edu.spring.boot.entidades.Autor;
 import egg.edu.spring.boot.entidades.Editorial;
 import egg.edu.spring.boot.entidades.Libro;
+import egg.edu.spring.boot.servicios.AutorServicio;
+import egg.edu.spring.boot.servicios.EditorialServicio;
 import egg.edu.spring.boot.servicios.LibroServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,18 +35,26 @@ public class LibroControlador {
     
     @Autowired
     private LibroServicio servicio;
+    @Autowired
+    private AutorServicio autorServ;
+    
+     @Autowired
+    private EditorialServicio editorialServ;
     
     
     @GetMapping("/todos")
     public ModelAndView mostrarLibros(){
     
-        ModelAndView mav=new ModelAndView("libros-lista"); // se pasa por parametro el html
+        ModelAndView mav=new ModelAndView("libros"); // se pasa por parametro el html
        /* List<Libro> libros=servicio.obtenerLibros(); 
         mav.addObject("libros", libros);
         
         return mav;*/
        
-       mav.addObject("libros", servicio.obtenerLibros());
+       mav.addObject("librosHabilitados", servicio.obtenerLibros());
+       
+       
+       
         
        return mav;
        
@@ -60,7 +70,11 @@ public class LibroControlador {
         
         return mav;*/
        
+       
+       
        mav.addObject("libro", new Libro());
+       mav.addObject("autores", autorServ.obtenerAutoresHabilitados());
+       mav.addObject("editoriales", editorialServ.obtenerEditoriales());
        mav.addObject("title", "Crear Libro");
        mav.addObject("action", "Guardar");
         
@@ -88,15 +102,15 @@ public class LibroControlador {
     }
     
     
-         @PostMapping("/guardar")
+         @PostMapping("/Guardar")
     public RedirectView guardarLibro(@RequestParam Long isbn, @RequestParam String titulo,@RequestParam Integer anio, @RequestParam Integer ejemplares,
             @RequestParam Autor autor, @RequestParam Editorial editorial){
     
-       servicio.crearLibro(isbn, titulo, anio, ejemplares, autor, editorial);
+       servicio.crearLibro( isbn, titulo , anio, ejemplares, autor, editorial);
         
       
        
-    return new RedirectView("/libros");
+    return new RedirectView("/libros/todos");
     }
     
     @PostMapping("/modificar")
@@ -104,16 +118,17 @@ public class LibroControlador {
             @RequestParam Autor autor, @RequestParam Editorial editorial){
             servicio.modificarLibro(id, ejemplares, autor, editorial);
       
-            return new RedirectView("/libros");
+            return new RedirectView("/libros/todos");
        
     
     }
     
     
     @PostMapping("/eliminar/(id)")  
+    
     public RedirectView eliminar(@PathVariable String id){
             servicio.darDeBajaLibro(id);
-            return new RedirectView("/libros");
+            return new RedirectView("/libros/todos");
        
     
     }

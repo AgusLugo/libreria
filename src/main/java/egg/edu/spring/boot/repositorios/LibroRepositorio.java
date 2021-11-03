@@ -24,13 +24,13 @@ public interface LibroRepositorio extends JpaRepository<Libro, String>{
     
     
     @Modifying
-    @Query("Update libro l SET  l.ejemplares= :ejemplares, l.autor= :autor, l.editorial= :editorial WHERE l.id= :id")
+    @Query("Update Libro l SET  l.ejemplares= :ejemplares, l.autor= :autor, l.editorial= :editorial WHERE l.id= :id")
 
         void modificarLibro(@Param("id") String id,@Param("ejemplares") Integer ejemplares, @Param("autor") Autor autor, @Param("editorial") Editorial editorial );
                 
 
-@Modifying
-    @Query("Update libro l SET  l.alta= :alta, l.autor= :autor WHERE l.id= :id")
+    @Modifying
+    @Query("Update Libro l SET  l.alta= :alta  WHERE l.id= :id")
 
-        void darDeBajaLibro(@Param("id") String id,@Param("alta") Boolean alta );
+        void darDeBajaLibro(@Param("id") String id,@Param("alta") Boolean alta);
                 }

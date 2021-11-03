@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PrincipalController {
     
-    @GetMapping //no es necesario que tenga url el local host entra por defecto aca y retorna una vista
+    @GetMapping("/index") //no es necesario que tenga url el local host entra por defecto aca y retorna una vista
     public ModelAndView inicio(){
     
         return new ModelAndView("index");

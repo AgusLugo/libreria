@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Autores</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+        <!-- CSS -->
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <div class="container">
+
+            <br>
+            <div class="menu">
+
+                <a th:href="@{/autores/crear}" class="btn btn-primary" >Agregar Autor</a>
+                <a th:href="@{/autores/todos}" class="btn btn-primary" >Regresar</a>
+                <a th:href="@{/index}" class="btn btn-primary" >Home</a>
+
+            </div>
+            <div th:switch="${autoresHabilitados}">
+                <h2 th:case="null"> No hay autores </h2>
+                <div th:case="*">
+                    <h2>Sección Autores Habilitados</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                            </tr>   
+                        </thead>
+
+                        <tbody>
+                            <tr th:each="autor: ${autoresHabilitados}">
+                                <td th:text="${autor.id}">
+                                <td th:text="${autor.nombre}">
+                                <td><form method="post" th:action="@{/autores/eliminar/__${autor.id}__}">
+                                        <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                    </form></td>
+                                <td><a class="btn btn-secondary btn-sm" th:href="@{/autores/editar/__${autor.id}__}">Editar</a></td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+               </div>
+            
+                
+                
+             <div th:switch="${autoresDeshabilitados}">
+                <h2>Sección Autores Deshabilitados</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                        </tr>   
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="autor: ${autoresDeshabilitados}" >
+                            <td th:text="${autor.id}" >
+                            <td th:text="${autor.nombre}">
+                            <td><form method="post" th:action="@{/autores/habilitar/__${autor.id}__}">
+                                    <button class="btn btn-danger btn-sm" type="submit">Habilitar</button>
+                                </form></td>
+                            <td><a class="btn btn-secondary btn-sm" th:href="@{/autores/editar/__${autor.id}__}">Editar</a></td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JS -->
+    <script th:src="@{/assets/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

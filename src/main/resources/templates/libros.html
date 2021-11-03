@@ -4,13 +4,66 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Libros</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+        <!-- CSS -->
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
     </head>
     <body>
-        <div>TODO write content</div>
+       <div class="container">
+            <br>
+            <div class="menu">
+                <a th:href="@{/libros/crear}" class="btn btn-primary" >Agregar</a>
+                <a th:href="@{/libros/todos}" class="btn btn-primary" >Regresar</a>
+                 <a th:href="@{/index}" class="btn btn-primary" >Home</a>
+                
+            </div>
+            <div th:switch="${libros}">
+                <h2 th:case="null"> No hay libros </h2>
+                <div th:case="*">
+                    <h2>Libros</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titulo</th>
+                                <th>Isbn</th>
+                                <th>Año</th>
+                                <th>Autor</th>
+                                <th>Editorial</th>
+                                <th>Ejemplares</th>
+                                
+                                
+                            </tr>   
+                        </thead>
+                        
+                        <tbody>
+                            <tr th:each="libro: ${libros}">
+                                <td th:text="${libro.id}">
+                                <td th:text="${libro.titulo}">
+                                <td th:text="${libro.isbn}">
+                                <td th:text="${libro.anio}">
+                                <td th:text="${libro.autor}">
+                                <td th:text="${libro.editorial}">
+                                <td><a th:href="@{/eliminar/{id}{id=${libro.id}}}">Delete</a></td>
+                                <td><a th:href="@{/editar/{id}{id=${libro.id}}}">Editar</a></td>
+                                
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+        
+
+        <!-- JS -->
+        <script th:src="@{/assets/bootstrap.bundle.min.js}"></script>
     </body>
 </html>

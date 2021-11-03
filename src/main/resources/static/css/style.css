@@ -1,0 +1,156 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02/11/2021, 16:33:33
+    Author     : Agustina
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+html, body {
+    margin: 0;
+    color:white;
+  }
+
+
+  body {
+    position:center; 
+    background-image: url(../img/index.jpg);
+    background-attachment: fixed;
+    padding-top: 150;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y:-95px;
+    background-position-x:0px;
+    height: 100vh;
+    width: 100%;
+  }
+
+
+  #panel{
+    height: 150px; 
+    width: 90%;
+    margin:auto; 
+    box-sizing: border-box;
+   
+  
+  }
+
+    
+
+  #panel a{
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    
+  }
+
+  #panel .logo{
+    
+    width: 30%;
+    height: 150px; 
+ 
+    float: left;
+    padding-top: 40px;
+    box-sizing: border-box;
+    
+  }
+
+  #panel .logo a{
+
+    font-size:50px ;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+
+  }
+
+  #menu{
+    width: 70%;
+    height: 150px; 
+  
+    float: left;
+    text-align: right;
+    padding-top: 67px;
+    box-sizing: border-box;
+   
+  }
+  
+  
+
+  #menu .nav-boton{
+    display: inline;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    padding: 40px ; 
+    letter-spacing: 1px;
+ 
+  }
+
+
+  body div#border-title {
+    background-color: rgba(225,225,225,.3);
+    width: 745px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    display: flex; 
+
+  }
+
+  body div#border-title h1{
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 46px;
+    text-align: center;
+    width:79%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    
+  }
+  
+  body div.container .table{
+     color: white;
+     
+    align-items: stretch;  
+  }
+  
+   body div.container .table tbody{
+      height: 150px;
+      width: 100%;
+     color: white;
+     overflow-y: auto;
+  }
+  
+ /*body div.container .table tbody, body div.container .table thead,
+  body div.container .table td,body div.container .table th{
+      display:inline-block ;
+  }*/
+  
+
+  
+  body div.container h2{
+     color: white;
+      
+  }
+  
+  
+  body div.container .form-control, .form-select{
+       background-color: rgba(225,225,225,.6);
+        
+        
+       
+  }
+  
+  body div.container .btn{
+      background-color:brown;
+  }
+
+

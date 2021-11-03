@@ -11,7 +11,7 @@ import egg.edu.spring.boot.entidades.Libro;
 import egg.edu.spring.boot.repositorios.LibroRepositorio;
 import java.util.List;
 import java.util.Optional;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +33,7 @@ public class LibroServicio {
             Autor autor, Editorial editorial){
     
     Libro libro=new Libro();
+    libro.setTitulo(titulo);
     libro.setIsbn(isbn);
     libro.setAnio(anio);
     libro.setAutor(autor);

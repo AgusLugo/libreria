@@ -9,14 +9,18 @@ import egg.edu.spring.boot.entidades.Autor;
 import egg.edu.spring.boot.repositorios.AutorRepositorio;
 import java.util.List;
 import java.util.Optional;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Agustina
  */
+@Service
 public class AutorServicio {
+    
+    
      @Autowired/*buscar bien el significado */
     private AutorRepositorio repositorio;
 
@@ -42,14 +46,22 @@ public class AutorServicio {
     }
     
     @Transactional /* falta el readOnly*/ 
-    public List<Autor> obtenerAutores(){
+    public List<Autor> obtenerAutoresHabilitados(){
 
-      return  repositorio.findAll(); 
-           
+     // return  repositorio.findAll(); 
+      return repositorio.buscarAutoresHabilitados();
     
     }
     
     @Transactional /* falta el readOnly*/ 
+    public List<Autor> obtenerAutoresDeshabilitados(){
+
+     // return  repositorio.findAll(); 
+      return repositorio.buscarAutoresDeshabilitados();
+    
+    }
+    
+    @Transactional (readOnly = true)
     public Autor obtenerAutorPorId(String id){
         
         Optional<Autor> autor=repositorio.findById(id);
@@ -61,6 +73,13 @@ public class AutorServicio {
     public void darDeBajaAutor(String id){
              
        repositorio.darDeBajaAutor(id,false);
+       
+    }
+    
+    @Transactional /* falta el readOnly*/ 
+    public void darDeAltaAutor(String id){
+             
+       repositorio.darDeAltaAutor(id);
        
     }
 }

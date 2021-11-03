@@ -22,25 +22,25 @@ import org.hibernate.annotations.SQLDelete;
  * @author Agustina
  */
 
+@Entity
 @SQLDelete(sql = "UPDATE libro SET alta=false WHERE id = ?")
 @Data @AllArgsConstructor @NoArgsConstructor
-@Entity
 public class Libro {
     
     @Id
     @GeneratedValue(generator = "uuid")    
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id; 
-    private long isbn; 
+    private Long isbn; 
     @Column( nullable = false)
     private String titulo; 
     @Column( nullable = false)
     private Integer anio; 
-     @Column( nullable = false)
+    @Column( nullable = false)
     private Integer ejemplares;
-      @Column( nullable = false)
+     @Column( nullable = false)
     private Integer ejemplaresPrestados;
-      @Column( nullable = false) 
+    @Column( nullable = false) 
     private Integer ejemplaresRestantes; 
     private Boolean alta;
     @ManyToOne
